@@ -9,7 +9,7 @@ before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
 
 test:
-  image: gradle:6.2.0-jdk8
+  image: gradle:6.2.0-jdk11
   cache: {}
   script:
     - gradle clean --stacktrace --info check
