@@ -5,12 +5,20 @@ plugins {
 group 'org.example'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    implementation 'ru.iopump.qa:qa-tools:0.1.0'
+
+    testImplementation 'org.assertj:assertj-core:3.15.0'
+    testImplementation 'org.seleniumhq.selenium:selenium-java:3.141.+'
+    testImplementation 'org.testcontainers:selenium:1.12.+'
+    testCompile 'junit:junit:4.12'
 }
