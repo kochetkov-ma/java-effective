@@ -15,7 +15,6 @@ import ru.iopump.qa.support.http.LocalSimpleHtmlServer.TestHtmlServer;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.http.HttpClient;
@@ -24,7 +23,6 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.Objects;
 
 import static org.testcontainers.containers.GenericContainer.INTERNAL_HOST_HOSTNAME;
 

@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'io.freefair.lombok' version '5.0.0-rc4'
 }
 
 group 'org.example'
@@ -9,13 +10,15 @@ java {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
 }
-
+generateLombokConfig {
+    enabled false
+}
 repositories {
     mavenCentral()
 }
-
 dependencies {
     implementation 'ru.iopump.qa:qa-tools:0.1.0'
+    implementation 'ch.qos.logback:logback-classic:1.2.+'
 
     testImplementation 'org.assertj:assertj-core:3.15.0'
     testImplementation 'org.seleniumhq.selenium:selenium-java:3.141.+'
