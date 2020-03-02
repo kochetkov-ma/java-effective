@@ -1,4 +1,4 @@
-package ru.smartdigit.qa.testcontainers;
+package ru.iopump.qa.testcontainers;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Rule;
@@ -26,7 +26,7 @@ import java.util.List;
 
 import static org.testcontainers.containers.GenericContainer.INTERNAL_HOST_HOSTNAME;
 
-public class ContainerInGitLabCITest {
+public class ContainersTest {
     private static final String HTML;
 
     static {

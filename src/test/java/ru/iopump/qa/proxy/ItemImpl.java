@@ -1,4 +1,4 @@
-package ru.smartdigit.qa.proxy;
+package ru.iopump.qa.proxy;
 
 import java.util.Random;
 import java.util.UUID;
