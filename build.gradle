@@ -13,6 +13,9 @@ java {
 generateLombokConfig {
     enabled false
 }
+test {
+    reports { junitXml.enabled = false; html.enabled = false }
+}
 repositories {
     mavenCentral()
 }
