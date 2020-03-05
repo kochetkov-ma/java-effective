@@ -1,9 +1,35 @@
 <html>
+<head>
+    <script type="text/javascript">
+        function sleepFor( sleepDuration ){
+            var now = new Date().getTime();
+            while(new Date().getTime() < now + sleepDuration){ /* do nothing */ }
+        }
+
+        function hide() {
+            let element = document.getElementById("3");
+            sleepFor(500);
+            if (element != null) {
+                element.remove()
+            } else {
+                let newElement = document.createElement("button")
+                newElement.textContent = "Button-3"
+                newElement.setAttribute("id", "3")
+                document.body.prepend(newElement);
+            }
+            /*if (element.style.display !== "none") element.style.display = "none"
+            else element.style.display = "inline"*/
+        }
+    </script>
+</head>
 <body>
 <button>Button-1</button>
 <button>Button-2</button>
-<button>Button-3</button>
+<button id="3">Button-3</button>
 <button>Button-4</button>
 <button>Button-5</button>
+
+<p><input type="button" id="hide" value="Hide button" onclick="hide()"></p>
 </body>
+
 </html>
