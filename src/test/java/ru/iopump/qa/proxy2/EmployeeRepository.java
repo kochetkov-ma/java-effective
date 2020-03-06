@@ -5,5 +5,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<SpringTest.Employee, Long> {
+
     SpringTest.Employee findByName(String name);
+
 }

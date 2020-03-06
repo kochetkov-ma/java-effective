@@ -48,6 +48,9 @@ public class SelenideTest {
         Selenide.open(htmlServer.getUrl());
         Page page = Selenide.page(Page.class);
 
+
+
+
         // display
         page.elementsCollection.shouldBe(CollectionCondition.size(5));
         assert page.webElementList.size() == 5;
@@ -57,9 +60,11 @@ public class SelenideTest {
         // hide
         page.hide.click();
 
-        page.elementsCollection.shouldBe(CollectionCondition.size(4));
-        assert page.webElementList.size() == 4;
+        assertThat(page.webElementList).hasSize(4);
         assert page.selenideElementList.size() == 4;
+
+        page.elementsCollection.shouldBe(CollectionCondition.size(4));
+
 
 
         // display
@@ -78,6 +83,7 @@ public class SelenideTest {
 
         Selenide.open(htmlServer.getUrl());
         Page page = Selenide.page(Page.class);
+
 
         // display
         assert page.cachedWebElementList.size() == 5;
