@@ -98,6 +98,8 @@ public class LombokTest {
         }
     }
 
+    // закончили 27.03.20
+
     @Test
     public void builder() {
         // BuilderClassBuilder builderClass = BuilderClass.builder(); // так не работает
