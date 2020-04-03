@@ -34,16 +34,18 @@ dependencies {
     implementation 'ru.iopump.qa:qa-tools:0.1.0'
     implementation 'ch.qos.logback:logback-classic:1.2.+'
 
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '3.3.3'
+
     testImplementation 'com.codeborne:selenide:5.8.0'
     testImplementation 'org.assertj:assertj-core:3.15.0'
     testImplementation 'org.seleniumhq.selenium:selenium-java:3.141.+'
     testImplementation 'org.testcontainers:selenium:1.13.+'
     testCompile 'junit:junit:4.13'
 
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     runtimeOnly 'com.h2database:h2'
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-    }
     compile 'org.jooq:joor:0.9.12'
+
+    /* Spring */
+    implementation group: 'org.springframework', name: 'spring-core', version: '5.2.5.RELEASE'
+    implementation group: 'org.springframework', name: 'spring-context', version: '5.2.5.RELEASE'
 }
