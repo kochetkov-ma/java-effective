@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.context.support.GenericApplicationContext;
@@ -15,7 +16,7 @@ public class DefaultListableBeanFactoryRedundantCacheTest {
     /**
      * Fail.
      */
-    @Test
+    @Test(expected = NoSuchBeanDefinitionException.class)
     public void noSuchBeanDefinitionExceptionAfterRegisterBean() {
         try (GenericApplicationContext context = new GenericApplicationContext()) {
             context.refresh();
@@ -32,17 +33,14 @@ public class DefaultListableBeanFactoryRedundantCacheTest {
             }
             assertThat(exception).isInstanceOf(NoSuchBeanDefinitionException.class);
 
-            /* No Clear Metadata Cache */
-            // context.getBeanFactory().clearMetadataCache();
+            /* No Clear Metadata Cache 'context.getBeanFactory().clearMetadataCache()' */
 
-            final AbstractBeanDefinition definition = BeanDefinitionBuilder
+            final BeanDefinition definition = BeanDefinitionBuilder
                 .genericBeanDefinition(Bean.class)
                 .getBeanDefinition();
             context.registerBeanDefinition("myBean", definition);
 
             final Bean newBean = context.getBean(Bean.class);
-
-            assertThat(newBean).isNotNull();
         }
     }
 
