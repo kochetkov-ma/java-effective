@@ -3,7 +3,7 @@ package ru.iopump.qa.lombok;
 import lombok.Builder;
 import lombok.Value;
 
-@Builder(setterPrefix = "with")
+@Builder
 @Value
 public class BuilderClass {
     String field1;

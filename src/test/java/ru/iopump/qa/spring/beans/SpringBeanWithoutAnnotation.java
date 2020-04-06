@@ -10,13 +10,14 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.BeanNameAware;
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 @Value
 @Slf4j
-public class SpringBeanWithoutAnnotation implements Closeable, InitializingBean, ApplicationContextAware, BeanNameAware, BeanFactoryAware {
+public class SpringBeanWithoutAnnotation implements Closeable, InitializingBean, ApplicationContextAware, BeanNameAware, BeanFactoryAware, DisposableBean {
     String value;
 
     //// BEAN LIFECYCLE
@@ -54,5 +55,10 @@ public class SpringBeanWithoutAnnotation implements Closeable, InitializingBean,
     @Override
     public void setApplicationContext(@Nonnull ApplicationContext applicationContext) throws BeansException {
         log.info("[PROTOTYPE][SpringBeanWithoutAnnotation] aware setApplicationContext");
+    }
+
+    @Override
+    public void destroy() {
+        log.info("[PROTOTYPE][SpringBeanWithoutAnnotation] destroy");
     }
 }

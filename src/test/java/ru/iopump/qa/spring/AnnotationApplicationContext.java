@@ -39,11 +39,15 @@ public class AnnotationApplicationContext {
             log.info("\n\n\n SECTION 1 \n\n\n");
 
             SpringBean springBean1 = context.getBean("springBean", SpringBean.class);
+
             SpringBean springBean2 = (SpringBean) context.getBean("springBean");
+
             SpringBean springBean3 = context.getBean(SpringBean.class);
 
             assert springBean1 == springBean2;
             assert springBean2 == springBean3;
+
+            // Добавить собственную конфигурацию aplication.properties на ряду с system properties и env properties
 
             /* Bug */
             /* If I call this code next class for `context.getBean(SpringBeanWithoutAnnotation.class)` will fail with NoSuchBeanDefinitionException */
@@ -79,6 +83,12 @@ public class AnnotationApplicationContext {
             assert newSpringBean1 != newSpringBean2;
             assert newSpringBean2 != newSpringBean3;
             assert newSpringBean1 != newSpringBean3;
+
+            context.getBeanFactory().destroyBean(newSpringBean1);
+            context.getBeanFactory().destroyBean(newSpringBean2);
+            context.getBeanFactory().destroyBean(newSpringBean3);
+
+            newSpringBean1.close();
 
             /* SECTION 3 */
             log.info("\n\n\n SECTION 3 \n\n\n");

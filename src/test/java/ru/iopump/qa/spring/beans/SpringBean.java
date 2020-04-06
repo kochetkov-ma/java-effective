@@ -11,13 +11,14 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class SpringBean {
 
     public final String userName;
 
     public SpringBean(@Value("${spring.user.variable:unknown}") String userName) {
-        log.info("SpringBean construct");
+
+        log.info("SpringBean construct: " + userName);
         this.userName = userName;
     }
 

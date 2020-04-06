@@ -102,9 +102,10 @@ public class LombokTest {
 
     @Test
     public void builder() {
-        // BuilderClassBuilder builderClass = BuilderClass.builder(); // так не работает
+//        BuilderClass.BuilderClassBuilder builderClass = BuilderClass.builder(); // так не работает
+
         BuilderClass builderClass = BuilderClass.builder()
-            .withField1("a")
+            .field1("a")
             .build();
 
         assert builderClass != null;
@@ -120,8 +121,8 @@ public class LombokTest {
     }
 
     @UtilityClass
-    public static class UtilClass {
-        public String CONST = "string";
+    public final static class UtilClass {
+        public  String CONST = "string";
 
         public String get() {
             return "string";
