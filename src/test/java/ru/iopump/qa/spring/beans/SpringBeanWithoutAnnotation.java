@@ -17,14 +17,27 @@ import org.springframework.context.ApplicationContextAware;
 
 @Value
 @Slf4j
-public class SpringBeanWithoutAnnotation implements Closeable, InitializingBean, ApplicationContextAware, BeanNameAware, BeanFactoryAware, DisposableBean {
+public class SpringBeanWithoutAnnotation implements
+
+    Closeable,
+
+    InitializingBean,  // Инициализация
+    ApplicationContextAware,
+    BeanNameAware,
+    BeanFactoryAware,
+    DisposableBean
+
+{
+
+    @org.springframework.beans.factory.annotation.Value("${spring.user.variable:unknown}")
+    String fromProps;
     String value;
 
     //// BEAN LIFECYCLE
 
     @PostConstruct
     public void postConstruct() {
-        log.info("[PROTOTYPE][SpringBeanWithoutAnnotation] postConstruct");
+        log.info("[PROTOTYPE][SpringBeanWithoutAnnotation] postConstruct ??? WHY BEFORE afterPropertiesSet ???");
     }
 
     @PreDestroy
@@ -32,9 +45,11 @@ public class SpringBeanWithoutAnnotation implements Closeable, InitializingBean,
         log.info("[PROTOTYPE][SpringBeanWithoutAnnotation] preDestroy");
     }
 
+
     @Override
     public void close() {
         log.info("[PROTOTYPE][SpringBeanWithoutAnnotation] close");
+
     }
 
     @Override
@@ -57,8 +72,11 @@ public class SpringBeanWithoutAnnotation implements Closeable, InitializingBean,
         log.info("[PROTOTYPE][SpringBeanWithoutAnnotation] aware setApplicationContext");
     }
 
+
+
     @Override
     public void destroy() {
         log.info("[PROTOTYPE][SpringBeanWithoutAnnotation] destroy");
+        close();
     }
 }

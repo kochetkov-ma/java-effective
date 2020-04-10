@@ -18,9 +18,6 @@ public class AnnotationApplicationContext {
     static {
         /* -Dspring.profiles.active="test,prod" */
         System.setProperty("spring.profiles.active", "test,prod");
-
-        /* Custom variable */
-        System.setProperty("spring.user.variable", "max");
     }
 
     public static void main(String[] args) {
@@ -58,6 +55,7 @@ public class AnnotationApplicationContext {
                 log.error("No bean", ex);
             }
 
+            /* https://springframework.guru/spring-bean-lifecycle/ */
             /* SECTION 2 */
             log.info("\n\n\n SECTION 2 \n\n\n");
 
