@@ -8,8 +8,10 @@ import org.springframework.context.annotation.Configuration;
 
 
 @Configuration
-@EnableCaching
+@EnableCaching // Enable caching
 public class CacheConfiguration {
+
+    // And create bean with caching map
     @Bean
     public CacheManager cacheManager() {
         return new ConcurrentMapCacheManager("uuid");

@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
-import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
@@ -37,7 +36,7 @@ public class AnnotationApplicationContext {
 
             context.scan("ru.iopump.qa.spring.beans"); // Only for AnnotationConfigApplicationContext implementation
             context.register(BeanConfiguration.class); // Only for AnnotationConfigApplicationContext implementation
-            context.register(CacheConfiguration.class);
+            context.register(CacheConfiguration.class); // Add caching configuration
             context.refresh(); // don't forget !!! AnnotationConfigApplicationContext support only single refresh !!!
 
             /* SECTION 1 */
@@ -135,15 +134,16 @@ public class AnnotationApplicationContext {
             prototypeBean2 = singletonBean.getPrototypeBeanLookup();
             assert prototypeBean1 != prototypeBean2; // Different beans
 
+            // Special case
             PrototypeProxyBean prototypeProxyBean1 = singletonBean.getPrototypeProxyBean();
             PrototypeProxyBean prototypeProxyBean2 = singletonBean.getPrototypeProxyBean();
 
             assert prototypeProxyBean1 == prototypeProxyBean2; // The same bean !!!
 
-            assert prototypeProxyBean1.get() != prototypeProxyBean1.get(); // Different beans via proxy
-            assert prototypeProxyBean1.get() != prototypeProxyBean2.get(); // Different beans via proxy
+            assert prototypeProxyBean1.get() != prototypeProxyBean1.get(); // Different result via Spring proxy
+            assert prototypeProxyBean1.get() != prototypeProxyBean2.get(); // Different result via Spring proxy
 
-            assert prototypeProxyBean1.hashCode() == prototypeProxyBean2.hashCode(); // But hashCode the same
+            assert prototypeProxyBean1.hashCode() == prototypeProxyBean2.hashCode(); // But hashCode the same !!!
 
             ///////////////////////////////
             /* SECTION 5 - CACHED METHOD */
