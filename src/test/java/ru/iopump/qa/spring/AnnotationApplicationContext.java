@@ -72,7 +72,8 @@ public class AnnotationApplicationContext {
             log.info("\n\n\n SECTION 2 - PROTOTYPE \n\n\n");
 
             // Create bean definition
-            BeanDefinition definition = BeanDefinitionBuilder.genericBeanDefinition(SpringBeanWithoutAnnotation.class)
+            BeanDefinition definition = BeanDefinitionBuilder
+                .genericBeanDefinition(SpringBeanWithoutAnnotation.class)
                 .setScope(ConfigurableBeanFactory.SCOPE_PROTOTYPE) // Look here
                 .addConstructorArgValue("my bean")
                 .getBeanDefinition();
@@ -105,7 +106,9 @@ public class AnnotationApplicationContext {
             log.info("\n\n\n SECTION 3 - BEAN COLLECTION \n\n\n");
 
             Collection<? extends IBean> beanCollectionViaContext = context.getBeansOfType(IBean.class).values();
+
             Collection<? extends IBean> beanCollectionViaMethod = (Collection<? extends IBean>) context.getBean("iBeanUserCollection");
+
             Collection<? extends IBean> beanCollectionViaInject = context.getBean(BeanWithCollection.class).getIBeans();
 
             log.info("--- [INFO] --- beanCollectionViaContext: " + beanCollectionViaContext.stream().map(IBean::info).collect(Collectors.joining(", ")));

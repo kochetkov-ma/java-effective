@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class SingletonBean {
     private final PrototypeBean prototypeBean;
+
+
     /* Prototype via Scoped Proxy */
     private final PrototypeProxyBean prototypeProxyBean;
     /* Prototype via ObjectFactory */
@@ -29,13 +31,6 @@ public class SingletonBean {
     /**
      * As Prototype
      */
-    public PrototypeProxyBean getPrototypeProxyBean() {
-        return prototypeProxyBean;
-    }
-
-    /**
-     * As Prototype
-     */
     public PrototypeBean getPrototypeBeanViaObjectFactory() {
         return prototypeBeanViaObjectFactory.getObject();
     }
@@ -47,11 +42,21 @@ public class SingletonBean {
         return prototypeBeanViaBeanFactory.getBean(PrototypeBean.class);
     }
 
+
+
     /**
      * As Prototype
      */
     @Lookup
     public PrototypeBean getPrototypeBeanLookup() {
         return null;
+    }
+
+
+    /**
+     * As Prototype
+     */
+    public PrototypeProxyBean getPrototypeProxyBean() {
+        return prototypeProxyBean;
     }
 }

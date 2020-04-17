@@ -37,7 +37,7 @@ public class BeanConfiguration {
     }
 
     @Bean
-    public Collection<IBean> iBeanUserCollection(Collection<IBean> iBeans) {
+    public Collection<? extends IBean> iBeanUserCollection(Collection<? extends IBean> iBeans) {
         return iBeans;
     }
 }
