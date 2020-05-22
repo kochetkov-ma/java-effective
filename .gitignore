@@ -31,6 +31,8 @@ pg-rest-client/out
 .settings
 **/bin
 
+**/node_modules
+
 # Docker enviroment file
 personal.env
 

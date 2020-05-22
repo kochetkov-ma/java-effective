@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 public class PhoneControllerTest {
+
     @Autowired
     private ObjectMapper objectMapper;
     @Autowired
@@ -25,13 +26,15 @@ public class PhoneControllerTest {
 
     @Test
     public void addPhone() throws Exception {
+
         final Request addRequest = new Request();
         addRequest.setPhoneNumbers(List.of("+7 903 777 11 11"));
 
-        mockMvc.perform(post("/api/v1")
+        mockMvc.perform(
+            post("/api/v1")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsBytes(addRequest))
         )
-            .andExpect(status().isCreated());
+            .andExpect(status().isOk());
     }
 }
